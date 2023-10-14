@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>To Do List | KursatYG</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>To Do List</h1>
+      <div class="input-container">
+        <input type="text" placeholder="Add To Do..." id="todoInput" />
+        <button id="todoButton" onclick="addTodo()"><i class="fa-solid fa-plus"></i></button>
+        <button id="todoClear" onclick="clearTodo()"><i class="fa-solid fa-c"></i></button>
+      </div>
+      <ul id="todoList">
+        <!--Buraya JavaScript ile veriler eklenecek.-->
+      </ul>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #8224da;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  margin-top: 50px;
+}
+
+.container {
+  background-color: #fff;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.input-container {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #dddd;
+  border-radius: 5px;
+  flex: 1;
+  outline: none;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  transition: 300ms all;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+button:active {
+  transform: scale(1.1);
+}
+.todo-list {
+    font-size: 16px;
+    padding: 10px;
+    text-decoration: none;
+    list-style: none;
+    border-bottom: 1px solid var(--primary-color);
+    word-wrap: break-word;
+    cursor: pointer;
+}  

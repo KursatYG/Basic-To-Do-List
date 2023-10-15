@@ -3,79 +3,125 @@
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
+  list-style: none;
 }
 
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #8224da;
+  --primary-color: #2586c7;
+  --secondary-color: #24da4b;
 }
 
-body {
+body{
+  background:linear-gradient(to bottom right, var(--primary-color),var(--secondary-color));
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: linear-gradient(
-    to right,
-    var(--primary-color),
-    var(--secondary-color)
-  );
-  margin-top: 50px;
+}
+.container{
+  margin: 50px 0;
+  width: 500px;
 }
 
-.container {
-  background-color: #fff;
-  width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-h1 {
-  text-align: center;
-  color: var(--primary-color);
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--primary-color);
-}
-
-.input-container {
+.container-stats{
   display: flex;
-  margin-bottom: 20px;
-  justify-content: center;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+ 
 }
 
-input[type="text"] {
-  padding: 10px;
-  border: 1px solid #dddd;
-  border-radius: 5px;
-  flex: 1;
-  outline: none;
-  font-size: 16px;
-}
-
-button {
-  padding: 10px 15px;
+.stats li{
+  display: flex;
   margin-left: 10px;
-  border-radius: 5px;
   cursor: pointer;
-  color: #fff;
+}
+
+
+.stats-text{
+ background-color: #fff;
+ padding: 4px;
+ border-radius: 5px 0 0 5px;
+}
+
+.stats-value{
   background-color: var(--primary-color);
-  border: none;
+  padding: 4px;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+}
+
+.card{
+  background-color: #fff;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  border-radius: 16px;
+  height: 100%;
+}
+
+.card h2{
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--primary-color);
+  line-height: 2;
+}
+
+.card-header{
+  display: flex;
+}
+
+.todo-input{
+  width: 100%;
+  padding: 10px;
+  vertical-align: middle;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  border: 1px solid rgba(27, 27, 27, .5);
+}
+
+.todo-button{
+  padding: 7px 15px;
+  border-radius: 0 5px 5px 0;
+  border: 1px solid rgba(27, 27, 27, .5);
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: #fff;
   transition: 300ms all;
 }
 
-button:hover {
+.todo-button:hover{
   background-color: var(--secondary-color);
 }
 
-button:active {
+.todo-button:active{
   transform: scale(1.1);
 }
-.todo-list {
-    font-size: 16px;
-    padding: 10px;
-    text-decoration: none;
-    list-style: none;
-    border-bottom: 1px solid var(--primary-color);
-    word-wrap: break-word;
-    cursor: pointer;
-}  
+
+.card-body{
+  overflow-y:scroll;
+  height: 85%;
+  margin-top: 20px;
+}
+
+.todo-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.todo-item li{
+  flex-grow: 1;
+  text-align: left;
+  cursor: default;
+}
+
+.todo-item i{
+  cursor: pointer;
+  margin: 0 5px;
+  font-size: 17px;
+}
+
+.done li{
+  text-decoration: line-through;
+}

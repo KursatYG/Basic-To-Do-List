@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
@@ -11,16 +15,37 @@
     <title>To Do List | KursatYG</title>
   </head>
   <body>
-    <div class="container">
-      <h1>To Do List</h1>
-      <div class="input-container">
-        <input type="text" placeholder="Add To Do..." id="todoInput" />
-        <button id="todoButton" onclick="addTodo()"><i class="fa-solid fa-plus"></i></button>
-        <button id="todoClear" onclick="clearTodo()"><i class="fa-solid fa-c"></i></button>
-      </div>
-      <ul id="todoList">
-        <!--Buraya JavaScript ile veriler eklenecek.-->
-      </ul>
+    <div class="container">      
+        <div class="container-stats">
+          <ul class="stats">
+            <li>
+              <span class="stats-text">Remaining</span>
+              <span class="stats-value" id="remaining-tasks">0</span>
+            </li>
+          </ul> 
+          <ul class="stats">
+            <li>
+              <span class="stats-text">Completed</span>
+              <span class="stats-value" id="completed-tasks">0</span>
+            </li>
+          </ul> 
+          <ul class="stats">
+            <li>
+              <span class="stats-text">Total</span>
+              <span class="stats-value" id="total-tasks">0</span>
+            </li>
+          </ul> 
+        </div>
+        <div class="card">
+          <h2>To Do List</h2>
+          <div class="card-header">
+            <input class="todo-input" id="todo-input" type="text" placeholder="Add To Do...">
+            <button class="todo-button" id="todo-button"><i class="fas fa-plus"></i></button>
+          </div>
+          <div class="card-body">
+            <ul class="todo-list" id="todo-list">    
+            </ul>
+          </div>
     </div>
     <script src="script.js"></script>
   </body>

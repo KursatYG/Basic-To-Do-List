@@ -16,23 +16,23 @@
   </head>
   <body>
     <div class="container">      
-        <div class="container-stats">
-          <ul class="stats">
+        <div class="container-stats" id="todo-filter">
+          <ul class="stats" id="todo-filter-remaining">
             <li>
-              <span class="stats-text">Remaining</span>
-              <span class="stats-value" id="remaining-tasks">0</span>
+              <span class="stats-text" >Remaining</span>
+              <span class="stats-value" id="remaining-tasks"></span>
             </li>
           </ul> 
-          <ul class="stats">
+          <ul class="stats" id="todo-filter-completed">
             <li>
               <span class="stats-text">Completed</span>
-              <span class="stats-value" id="completed-tasks">0</span>
+              <span class="stats-value" id="completed-tasks"></span>
             </li>
           </ul> 
-          <ul class="stats">
+          <ul class="stats" id="todo-filter-total">
             <li>
               <span class="stats-text">Total</span>
-              <span class="stats-value" id="total-tasks">0</span>
+              <span class="stats-value" id="total-tasks"></span>
             </li>
           </ul> 
         </div>
@@ -43,7 +43,7 @@
             <button class="todo-button" id="todo-button"><i class="fas fa-plus"></i></button>
           </div>
           <div class="card-body">
-            <ul class="todo-list" id="todo-list">    
+            <ul class="todo-list" id="todo-list">   
             </ul>
           </div>
     </div>

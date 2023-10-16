@@ -3,7 +3,21 @@
   padding: 0;
   box-sizing: border-box;
   font-family: sans-serif;
-  list-style: none;
+  list-style: none; 
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  border-radius: 10px;
+  background-color: var(--secondary-color);
 }
 
 :root {
@@ -26,7 +40,15 @@ body{
   display: flex;
   margin-bottom: 10px;
   justify-content: flex-end;
- 
+
+}
+
+.stats{
+  transition: 300ms all;
+  
+}
+.stats:last-child{
+  transform: scale(1.1);
 }
 
 .stats li{

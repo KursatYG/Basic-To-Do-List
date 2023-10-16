@@ -4,6 +4,10 @@ const todoButton = document.getElementById("todo-button");
 const remainingTasks = document.getElementById("remaining-tasks");
 const completedTasks = document.getElementById("completed-tasks");
 const totalTasks = document.getElementById("total-tasks");
+const todoFilter = document.getElementById("todo-filter");
+const completedFilter = document.getElementById("todo-filter-completed");
+const totalFilter = document.getElementById("todo-filter-total");
+const remainingFilter = document.getElementById("todo-filter-remaining");
 
 const getTodosFromStorage = () => {
   const storage = JSON.parse(localStorage.getItem("todos"));
@@ -24,11 +28,11 @@ const getTodosToPage = () => {
   });
 };
 
-const getDonesToPage=()=>{
-  dones.forEach((done)=>{
+const getDonesToPage = () => {
+  dones.forEach((done) => {
     createDoneItem(done);
-  })
-}
+  });
+};
 
 const saveTodoStorage = (todo) => {
   todos.push(todo);
@@ -60,30 +64,38 @@ const removeTodoFromStorage = (todo) => {
 };
 
 const removeDoneFromStorage = (done) => {
-  const index = todos.indexOf(done);
+  const index = dones.indexOf(done);
   if (index > -1) {
     dones.splice(index, 1);
-    localStorage.setItem("todos", JSON.stringify(dones));
+    localStorage.setItem("dones", JSON.stringify(dones));
   }
 };
 
 const removeTodo = (target) => {
   const todo = target.parentNode.childNodes[0].innerHTML;
   removeTodoFromStorage(todo);
-  target.parentNode.classList.add('animate__animated','animate__rotateOutDownLeft','animate__faster')
-  target.parentNode.addEventListener('animationend',()=>{
+  target.parentNode.classList.add(
+    "animate__animated",
+    "animate__rotateOutDownLeft",
+    "animate__faster"
+  );
+  target.parentNode.addEventListener("animationend", () => {
     target.parentNode.remove();
-  })
+  });
 };
 
-const removeDone = (target) =>{
+const removeDone = (target) => {
   const done = target.parentNode.childNodes[0].innerHTML;
   removeDoneFromStorage(done);
-  target.parentNode.classList.add('animate__animated','animate__rotateOutDownLeft','animate__faster')
-  target.parentNode.addEventListener('animationend',()=>{
+  target.parentNode.classList.add(
+    "animate__animated",
+    "animate__rotateOutDownLeft",
+    "animate__faster"
+  );
+  target.parentNode.addEventListener("animationend", () => {
     target.parentNode.remove();
-  })
-}
+  });
+};
 
 const checkTodo = (target) => {
   const todo = target.parentNode.childNodes[0].innerHTML;
@@ -98,7 +110,7 @@ const moveTodoToDone = (todo, target) => {
 };
 
 const moveDonesToTodos = (done, target) => {
-  removeDoneFromStorage();
+  removeDoneFromStorage(done);
   todos.push(done);
   localStorage.setItem("todos", JSON.stringify(todos));
   makeItTodo(target);
@@ -127,7 +139,7 @@ const uncheckDone = (target) => {
 
 const createTodoItem = (text) => {
   const todoItem = document.createElement("div");
-  todoItem.classList.add("todo-item");
+  todoItem.classList.add("todo-item", "todo");
   const todoItemLi = document.createElement("li");
   todoItemLi.innerHTML = text;
   const todoItemCheck = document.createElement("i");
@@ -144,7 +156,7 @@ const createTodoItem = (text) => {
 
 const createDoneItem = (text) => {
   const todoItem = document.createElement("div");
-  todoItem.classList.add("todo-item",'done');
+  todoItem.classList.add("todo-item", "done");
   const todoItemLi = document.createElement("li");
   todoItemLi.innerHTML = text;
   const todoItemCheck = document.createElement("i");
@@ -158,3 +170,42 @@ const createDoneItem = (text) => {
   todoItem.appendChild(todoItemRemove);
   todoList.appendChild(todoItem);
 };
+
+remainingFilter.addEventListener("click", () => {
+  remainingFilter.style.transform="scale(1.1)"
+  totalFilter.style.transform="scale(1)"
+  completedFilter.style.transform="scale(1)"
+  const items = todoList.getElementsByClassName("todo-item");
+  let array = [].map.call(items, (item) => item);
+  array.forEach((item) => {
+    if (item.classList.contains("done")) item.style.display = "none";
+    else item.style.display = "flex";
+  });
+});
+
+completedFilter.addEventListener("click", () => {
+  completedFilter.style.transform="scale(1.1)"
+  totalFilter.style.transform="scale(1)"
+  remainingFilter.style.transform="scale(1)"
+  const items = todoList.getElementsByClassName("todo-item");
+  let array = [].map.call(items, (item) => item);
+  array.forEach((item) => {
+    if (item.classList.contains("todo")) item.style.display = "none";
+    else item.style.display = "flex";
+  });
+});
+
+totalFilter.addEventListener("click", () => {
+  totalFilter.style.transform="scale(1.1)"
+  completedFilter.style.transform="scale(1)"
+  remainingFilter.style.transform="scale(1)"
+  const items = todoList.getElementsByClassName("todo-item");
+  let array = [].map.call(items, (item) => item);
+  array.forEach((item) => {
+    item.style.display = "flex";
+  });
+});
+
+remainingTasks.textContent = todos.length;
+completedTasks.textContent = dones.length;
+totalTasks.textContent = dones.length + todos.length;

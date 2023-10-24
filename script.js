@@ -47,7 +47,17 @@ todoInput.addEventListener("keyup", (event) => {
 window.addEventListener("load", () => {
   getTodosToPage();
   getDonesToPage();
+  totalCount()
 });
+
+function totalCount() {
+  let totalCount = todos.length + dones.length
+  for (let i = -1; i < totalCount; i++) {
+    totalTasks.innerHTML = totalCount;
+    completedTasks.innerHTML = dones.length;
+    remainingTasks.innerHTML= todos.length
+  }
+}
 
 todoButton.addEventListener("click", () => {
   const input = todoInput.value;
@@ -60,6 +70,7 @@ const removeTodoFromStorage = (todo) => {
   if (index > -1) {
     todos.splice(index, 1);
     localStorage.setItem("todos", JSON.stringify(todos));
+    totalCount();
   }
 };
 
@@ -68,6 +79,7 @@ const removeDoneFromStorage = (done) => {
   if (index > -1) {
     dones.splice(index, 1);
     localStorage.setItem("dones", JSON.stringify(dones));
+    totalCount();
   }
 };
 
@@ -82,6 +94,7 @@ const removeTodo = (target) => {
   target.parentNode.addEventListener("animationend", () => {
     target.parentNode.remove();
   });
+  totalCount();
 };
 
 const removeDone = (target) => {
@@ -95,11 +108,13 @@ const removeDone = (target) => {
   target.parentNode.addEventListener("animationend", () => {
     target.parentNode.remove();
   });
+  totalCount();
 };
 
 const checkTodo = (target) => {
   const todo = target.parentNode.childNodes[0].innerHTML;
   moveTodoToDone(todo, target);
+  totalCount();
 };
 
 const moveTodoToDone = (todo, target) => {
@@ -107,6 +122,7 @@ const moveTodoToDone = (todo, target) => {
   dones.push(todo);
   localStorage.setItem("dones", JSON.stringify(dones));
   makeItDone(target);
+  totalCount();
 };
 
 const moveDonesToTodos = (done, target) => {
@@ -114,6 +130,7 @@ const moveDonesToTodos = (done, target) => {
   todos.push(done);
   localStorage.setItem("todos", JSON.stringify(todos));
   makeItTodo(target);
+  totalCount();
 };
 
 const makeItDone = (target) => {
@@ -152,6 +169,7 @@ const createTodoItem = (text) => {
   todoItem.appendChild(todoItemCheck);
   todoItem.appendChild(todoItemRemove);
   todoList.appendChild(todoItem);
+  totalCount()
 };
 
 const createDoneItem = (text) => {
@@ -171,41 +189,35 @@ const createDoneItem = (text) => {
   todoList.appendChild(todoItem);
 };
 
-remainingFilter.addEventListener("click", () => {
-  remainingFilter.style.transform="scale(1.1)"
-  totalFilter.style.transform="scale(1)"
-  completedFilter.style.transform="scale(1)"
+todoFilter.addEventListener("click", (e) => {
+  e.preventDefault;
   const items = todoList.getElementsByClassName("todo-item");
   let array = [].map.call(items, (item) => item);
+  console.log(e.target.innerHTML);
   array.forEach((item) => {
-    if (item.classList.contains("done")) item.style.display = "none";
-    else item.style.display = "flex";
+    switch (e.target.innerHTML) {
+      case "Remaining":
+        totalFilter.style.transform = "scale(1)";
+        completedFilter.style.transform = "scale(1)";
+        remainingFilter.style.transform = "scale(1.1)";
+        if (item.classList.contains("done")) item.style.display = "none";
+        else item.style.display = "flex";
+        break;
+      case "Completed":
+        totalFilter.style.transform = "scale(1)";
+        completedFilter.style.transform = "scale(1.1)";
+        remainingFilter.style.transform = "scale(1)";
+        if (item.classList.contains("todo")) item.style.display = "none";
+        else item.style.display = "flex";
+        break;
+      case "Total":
+        totalFilter.style.transform = "scale(1.1)";
+        completedFilter.style.transform = "scale(1)";
+        remainingFilter.style.transform = "scale(1)";
+        item.style.display = "flex";
+        break;
+      default:
+        break;
+    }
   });
 });
-
-completedFilter.addEventListener("click", () => {
-  completedFilter.style.transform="scale(1.1)"
-  totalFilter.style.transform="scale(1)"
-  remainingFilter.style.transform="scale(1)"
-  const items = todoList.getElementsByClassName("todo-item");
-  let array = [].map.call(items, (item) => item);
-  array.forEach((item) => {
-    if (item.classList.contains("todo")) item.style.display = "none";
-    else item.style.display = "flex";
-  });
-});
-
-totalFilter.addEventListener("click", () => {
-  totalFilter.style.transform="scale(1.1)"
-  completedFilter.style.transform="scale(1)"
-  remainingFilter.style.transform="scale(1)"
-  const items = todoList.getElementsByClassName("todo-item");
-  let array = [].map.call(items, (item) => item);
-  array.forEach((item) => {
-    item.style.display = "flex";
-  });
-});
-
-remainingTasks.textContent = todos.length;
-completedTasks.textContent = dones.length;
-totalTasks.textContent = dones.length + todos.length;
